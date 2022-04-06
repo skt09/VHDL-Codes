@@ -30,19 +30,33 @@ begin
     begin
         wait for 50 ns;
         c <= not c;
-        wait for 50 ns;
+
+        if NOW >= 400 ns then
+          ---  report "Simulation completed successfully!";
+            wait;
+        end if;
+    end process;
+
+    proc2: process
+    begin
+        wait for 100 ns;
         b <= not b;
-        c <= not c;
-        wait for 50 ns;
-        c <= not c;
-        wait for 50 ns;
+
+        if NOW >= 400 ns then
+         ---   report "Simulation completed successfully!";
+            wait;
+        end if;
+    end process;
+
+    proc3: process
+    begin
+        wait for 200 ns;
         a <= not a;
-        b <= not b;
-        c <= not c;
 
         if NOW >= 400 ns then
             report "Simulation completed successfully!";
             wait;
         end if;
     end process;
+
 end;
