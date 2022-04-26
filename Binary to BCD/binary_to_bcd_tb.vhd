@@ -1,31 +1,25 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity four_to_sixteen_decoder_tb is end;
+entity bintobcd_tb is end;
 
-architecture testbench of four_to_sixteen_decoder_tb is
-    signal a : std_logic := '0';
-    signal b : std_logic := '0';
-    signal c : std_logic := '0';
-    signal d : std_logic := '0';
+architecture testbench of bintobcd_tb is
 
-    signal Y : std_logic_vector(15 downto 0);
+    signal b : std_logic_vector(3 downto 0) := "0000";
+
+    signal p : std_logic_vector(4 downto 0);
 
 begin
-    UUT: entity work.four_to_sixteen_decoder
-    Port map (
-        a => a,
+    UUT: entity work.bintobcd
+    port map (
         b => b,
-        c => c,
-        d => d,
-
-        Y => Y
+        p => p
     );
 
     proc1: process
     begin
         wait for 10 ns;
-        d <= not d;
+        b(0) <= not b(0);
 
         if NOW >= 160 ns then
             wait;
@@ -35,10 +29,9 @@ begin
     proc2: process
     begin
         wait for 20 ns;
-        c <= not c;
+        b(1) <= not b(1);
 
         if NOW >= 160 ns then
-        ---    report "Simulation completed successfully!";
             wait;
         end if;
     end process;
@@ -46,10 +39,9 @@ begin
     proc3: process
     begin
         wait for 40 ns;
-        b <= not b;
+        b(2) <= not b(2);
 
         if NOW >= 160 ns then
-        ---    report "Simulation completed successfully!";
             wait;
         end if;
     end process;
@@ -57,12 +49,13 @@ begin
     proc4: process
     begin
         wait for 80 ns;
-        a <= not a;
-        
+        b(3) <= not b(3);
+
         if NOW >= 160 ns then
             report "Simulation completed successfully!";
             wait;
         end if;
     end process;
+        
 
 end;

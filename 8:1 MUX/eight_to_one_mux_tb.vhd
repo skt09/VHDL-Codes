@@ -38,7 +38,6 @@ begin
         wait for 80 ns;
 
         if NOW >= 640 ns then
-            report "Simulation completed successfully!";
             wait;
         end if;
     end process;
